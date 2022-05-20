@@ -56,12 +56,6 @@ noseX = "";
 noseY = "";
 GameStatus = "";
 
-function startGame()
-{
-  GameStatus = "start";
-  document.getElementById("status").innerHTML = "Game Is Loading";
-}
-
 function game(){
 
   console.log("noseX = " + noseX +" ,noseY =  "+ noseY);
@@ -120,6 +114,12 @@ function game(){
     changeGameStatud(mario)
   }
 }  
+
+function startGame()
+{
+  GameStatus = "start";
+  document.getElementById("status").innerHTML = "Game Is Loading";
+}
 
 // change game status if any key is pressed
 function changeGameStatud(character){
@@ -226,7 +226,7 @@ function getCoins(coin,character){
   };
 }
     
-// Reappear coin after coin is got.
+// Reappear coin after goin is got.
 function coinVanish(coin){
   if(coin.get){
     coin.position.x=random(50,gameConfig.screenX)+gameConfig.screenX;
@@ -264,12 +264,7 @@ function positionOfCharacter(character){
   coins.forEach(function(element){
     getCoins(element,mario);
     coinVanish(element);
-  })
-    if(noseX < 0){
-      character.velocity.x-=gameConfig.moveSpeed;
-      character.changeAnimation('move');
-      character.mirrorX(+1);
-    };
+  });
 
   // EnemyMushrooms interaction event
   enemyMushrooms.forEach(function(element){
@@ -315,7 +310,7 @@ function manualControl(character){
 
 /* Movements of character */
 function jumping(character){
-	if( (noseY < 200  &&character.live) || (touchIsDown&&character.live) ){
+	if( (noseY < 168  &&character.live) || (touchIsDown&&character.live) ){
     character.velocity.y+=gameConfig.jump;
     mario_jump.play();
 	}
@@ -616,7 +611,7 @@ function scores(character){
     textAlign(CENTER);
     textSize(40);
     text(round(character.liveNumber),gameConfig.screenX/2,gameConfig.screenY/2-35);
-    text("lives",gameConfig.screenX/2,gameConfig.screenY/2)
+    text("lives",gameConfig.screenX/2,gameConfig.screenY/2);
 
     
   }
